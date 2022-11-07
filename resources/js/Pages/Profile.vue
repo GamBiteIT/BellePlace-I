@@ -30,7 +30,6 @@
 <script>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link} from '@inertiajs/inertia-vue3';
-// import Layout from '@/Shared/Layout.vue'
 import TextInput from '@/Shared/TextInput.vue'
 import FileInput from '@/Shared/FileInput.vue'
 import LoadingButton from '@/Shared/LoadingButton.vue'
