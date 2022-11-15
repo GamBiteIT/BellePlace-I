@@ -4,7 +4,7 @@
 
 A Screen Shot for the .env file
 
-![](https://raw.githubusercontent.com/GamBiteIT/BellePlace/env.png)
+![](https://raw.githubusercontent.com/GamBiteIT/BellePlace/main/env.png)
 
 
 ## Installation
