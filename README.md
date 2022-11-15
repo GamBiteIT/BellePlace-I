@@ -2,12 +2,17 @@
 
 
 
+A Screen Shot for the .env file
+
+![](https://raw.githubusercontent.com/GamBiteIT/BellePlace/env.png)
+
+
 ## Installation
 
 Clone the repo locally:
 
 ```sh
-git clone https://github.com/GamBiteIT/BellePlace-F.git BellePlace
+git clone https://github.com/GamBiteIT/BellePlace.git BellePlace
 cd BellePlace
 ```
 
