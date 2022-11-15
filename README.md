@@ -1,12 +1,5 @@
 # Belle Place
 
-
-
-A Screen Shot for the .env file
-
-![](https://raw.githubusercontent.com/GamBiteIT/BellePlace/main/env.png)
-
-
 ## Installation
 
 Clone the repo locally:
@@ -65,3 +58,6 @@ Run the dev server (the output will give the address):
 php artisan serve
 ```
 
+A Screen Shot for the .env file
+
+![](https://raw.githubusercontent.com/GamBiteIT/BellePlace/main/env.png)
