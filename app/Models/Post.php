@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Image;
+use App\Models\Commentaire;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -39,6 +41,27 @@ class Post extends Model
             $pics[] = $pic_path;
         }
         return $pics;
+    }
+    public function getimages()
+    {
+        return $this->hasMany(Image::class);
+
+    }
+    public function commentaire()
+    {
+       return  $commentaire = $this->hasMany(Commentaire::class);
+        // $comment = $commentaire->get('commentaire');
+        // $userid =  $commentaire->get('userid');
+        // $username = User::find($userid)->get('user');
+        // $comm = [
+        //     'username' => $username,
+        //     'commentaire'=>$comment,
+        //     'post_id'=>$commentaire->get('post_id'),
+        // ];
+        
+
+
+
     }
 
     public function scopeFilter($query,array $filters){

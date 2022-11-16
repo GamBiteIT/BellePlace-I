@@ -5,7 +5,7 @@
     <search-filter-vue v-model="form.search"></search-filter-vue>
 
 </div>
-<div>{{posts.data}}</div>
+<div>{{posts}}</div>
   </AuthenticatedLayout>
 </template>
 

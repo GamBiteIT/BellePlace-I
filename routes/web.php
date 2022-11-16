@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -34,13 +35,7 @@ Route::get('/', function () {
 Route::get('/dashboard',[PostController::class,'index'])->middleware(['auth','verified'])->name('dashboard');
 
 
-Route::get('/post/create/',[PostController::class,'create'])->middleware(['auth','verified'])->name('poster');
 
-
-Route::post('/poster',[PostController::class,'store'])->middleware(['auth','verified'])->name('poster.create');
-
-Route::get('/post/{post}',[PostController::class,'show'])->middleware(['auth','verified'])->name('post.show');
-Route::delete('/post/{post}',[PostController::class,'destroy'])->middleware(['auth','verified'])->name('post.delete');
 
 require __DIR__.'/auth.php';
 
@@ -53,6 +48,21 @@ Route::put('profile/{user}/update', [ProfileController::class, 'update'])
 
 
 // Posts ////
+
+Route::get('/post/create/',[PostController::class,'create'])->middleware(['auth','verified'])->name('poster');
+
+
+Route::post('/poster',[PostController::class,'store'])->middleware(['auth','verified'])->name('poster.create');
+
+Route::get('/post/{post}',[PostController::class,'show'])->middleware(['auth','verified'])->name('post.show');
+Route::get('/post/{post}/edit/',[PostController::class,'edit'])->middleware(['auth','verified'])->name('poster.edit');
+Route::put('/post/{post}/update/',[PostController::class,'update'])->middleware(['auth','verified'])->name('post.update');
+Route::delete('/post/{post}',[PostController::class,'destroy'])->middleware(['auth','verified'])->name('post.delete');
+
+//// Commentaires //////////////////////////////////
+
+Route::post('/post/comm',[CommentaireController::class,'store'])->middleware(['auth','verified'])->name('commentaires.create');
+
 
 
 

@@ -33,7 +33,8 @@ class PostController extends Controller
                 'description'=>$post->description,
                 'tags'=>$post->tags,
                 'rate'=>$post->rate,
-                'images'=>$post->image()
+                'images'=>$post->image(),
+               
 
             ])
         ]);
@@ -109,7 +110,8 @@ class PostController extends Controller
                    'tags'=>$post->tags,
                    'rate'=>$post->rate,
                    'images'=>$post->image(),
-                   'username'=>$post->user()
+                   'username'=>$post->user(),
+                   'comment'=>$post->commentaire
             ]
 
         ]);
@@ -123,7 +125,29 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $user = auth()->user();
+        $user_id = $user->id;
+        if ($user_id == $post->user_id) {
+            return Inertia::render('Posts/Edit',[
+                'post' => [
+                    'id'=>$post->id,
+                    'title'=> $post->title,
+                    'location'=>$post->location,
+                    'categories'=>$post->categories,
+                    'description'=>$post->description,
+                    'tags'=>$post->tags, 
+                    'rate'=>$post->rate,
+
+                    
+
+                ]]);
+        
+        }else{
+
+            return redirect()->route('dashboard');
+
+        }
+
     }
 
     /**
@@ -133,9 +157,36 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(Request $request,Post $post)
     {
-        //
+        // dd($request);
+        $image = $post->getimages();
+        $request->validate([
+            
+            'title' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            // 'pics' => ['required'],
+            'categories'=>'required',
+            'tags'=>'required',
+            'rate'=>'required',
+        ]);
+
+        $post->update($request->only('title','description','location','tags','rate','categories'));
+        $user = auth()->user();
+         if ($request->file('pics')){
+            $image->delete();
+            foreach($request->file('pics') as $pic){
+                Image::create([
+                    'image'=>$pic->store('posts'),
+                    'post_id'=>$post->id,
+                    'userid'=>$user->id
+                  ]);
+            }
+         }
+         return redirect()->route('dashboard')->with('success','Post updated successfully');
+
+        
     }
 
     /**
