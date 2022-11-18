@@ -49,7 +49,7 @@ class Post extends Model
     }
     public function commentaire()
     {
-       return  $commentaire = $this->hasMany(Commentaire::class);
+       return   $this->hasMany(Commentaire::class);
         // $comment = $commentaire->get('commentaire');
         // $userid =  $commentaire->get('userid');
         // $username = User::find($userid)->get('user');
@@ -68,8 +68,6 @@ class Post extends Model
         $query->when($filters["search"] ?? null,function($query,$search){
             $query->where('title', 'like', '%'.$search.'%')->orWhere('tags', 'like', '%'.$search.'%')->orWhere('categories','like','%'.$search.'%')->orWhere('location','like','%'.$search.'%');
         });
-
-
 
     }
 }

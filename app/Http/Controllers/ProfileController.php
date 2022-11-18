@@ -15,16 +15,22 @@ class ProfileController extends Controller
     //
     public function create(User $user)
     {
-        return Inertia::render('Profile', [
-            'user' => [
-                'id' => $user->id,
-                'name' => $user->name,
-                'email' => $user->email,
-                'username'=>$user->username,
-                'pic' => $user->pic ? URL::route('image', ['path' => $user->pic, 'w' => 100, 'h' => 100, 'fit' => 'crop']) : null,
-
-            ],
-        ]);
+        $userr = auth()->user();
+        if($user->id == $userr->id){
+            return Inertia::render('Profile', [
+                'user' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'username'=>$user->username,
+                    'pic' => $user->pic ? URL::route('image', ['path' => $user->pic, 'w' => 100, 'h' => 100, 'fit' => 'crop']) : null,
+                    'posts'=> $user->partner
+                ],
+               
+            ]);
+        }
+        return redirect()->route('dashboard');
+       
     }
 
     public function update(User $user)

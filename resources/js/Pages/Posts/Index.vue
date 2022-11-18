@@ -5,7 +5,11 @@
     <search-filter-vue v-model="form.search"></search-filter-vue>
 
 </div>
-<div>{{posts}}</div>
+<div>
+  {{offers.data}}
+
+</div>
+
   </AuthenticatedLayout>
 </template>
 
@@ -36,6 +40,7 @@ export default {
     props :{
         filters: Object,
      posts : Object,
+     offers : Object,
     },
     data() {
     return {

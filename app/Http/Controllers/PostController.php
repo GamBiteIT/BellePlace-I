@@ -7,10 +7,9 @@ use Inertia\Inertia;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Redirect;
-
+use App\Models\Offer;
 use App\Providers\RouteServiceProvider;
-use App\Http\Requests\UpdatePostRequest;
+
 
 class PostController extends Controller
 {
@@ -35,8 +34,17 @@ class PostController extends Controller
                 'rate'=>$post->rate,
                 'images'=>$post->image(),
                
-
-            ])
+            ]),
+            'offers' => Offer::orderBy('created_at','desc')->filter($request->only('search'))->paginate(10)->withQueryString()->through(fn($offer)=>[
+                'partner'=>$offer->partner($offer),
+                'title'=>$offer->title,
+                'location'=>$offer->location,
+                'category'=>$offer->category,
+                'description'=>$offer->description,
+                'phone'=>$offer->phone,
+                'images'=>$offer->image(),
+               
+            ]),
         ]);
     }
 

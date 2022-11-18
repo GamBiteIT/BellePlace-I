@@ -5,6 +5,7 @@
       <div class="flex justify-start mb-8 max-w-3xl">
         <h1 class="text-3xl font-bold">
           {{ form.name }}
+          {{user.posts.id}}
         </h1>
         <img v-if="user.pic" class="block ml-4 w-8 h-8 rounded-full" :src="user.pic" />
       </div>
@@ -49,7 +50,7 @@ export default {
     },
 
     props :{
-        user:Object
+        user:Object,
     },
     remember: 'form',
     data() {

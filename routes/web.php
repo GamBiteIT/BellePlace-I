@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\OfferController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -34,6 +36,20 @@ Route::get('/', function () {
 
 Route::get('/dashboard',[PostController::class,'index'])->middleware(['auth','verified'])->name('dashboard');
 
+Route::get('/partner/create',[PartnerController::class,'create']);
+Route::post('/partner/create',[PartnerController::class,'store'])->name('partner.create');
+Route::get('partner/profile/{partner}/',[PartnerController::class,'show'])->name('partner.profile');
+Route::get('partner/profile/{partner}/edit',[PartnerController::class,'edit'])->name('partner.profile.edit');
+Route::put('partner/profile/{partner}/update',[PartnerController::class,'update'])->name('partner.profile.update');
+
+
+
+Route::get('/offer',[OfferController::class,'create'])->name('offer')->middleware('auth');
+Route::post('/offer/create',[OfferController::class,'store'])->name('offers.create');
+Route::get('/offer/{offer}',[OfferController::class,'show'])->name('offer.show');
+Route::get('/offer/{offer}/edit/',[OfferController::class,'edit'])->name('offer.edit');
+Route::put('/offer/{offer}/update',[OfferController::class,'update'])->name('offer.update');
+Route::delete('/offer/{offer}',[OfferController::class,'destroy'])->name('offer.delete');
 
 
 
